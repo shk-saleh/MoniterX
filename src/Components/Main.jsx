@@ -1,6 +1,5 @@
 import React from 'react'
 import Overview from './Overview';
-import { CPU } from './CPU';
 
 const Main = ({activeTab}) => {
 
@@ -9,8 +8,6 @@ const Main = ({activeTab}) => {
     switch (activeTab) {
       case 'overview':
          return <Overview/>
-      case 'cpu':
-         return <CPU/>  
       default:
         break;
     }
