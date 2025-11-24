@@ -1,5 +1,11 @@
 import React from 'react'
 import Overview from './Overview';
+import CPU from './CPU';
+import Memory from './Memory';
+import Disk from './Disk';
+import Network from './Network';
+import Processes from './Processes';
+import Optimize from './Optimize';
 
 const Main = ({activeTab}) => {
 
@@ -8,6 +14,18 @@ const Main = ({activeTab}) => {
     switch (activeTab) {
       case 'overview':
          return <Overview/>
+      case 'cpu':
+        return <CPU/>
+      case 'memory':
+      return <Memory />;
+      case 'disk':
+        return <Disk/>;
+      case 'network':
+        return <Network/>;
+      case 'processes':
+        return <Processes/>;
+      case 'optimize':
+        return <Optimize/>;
       default:
         break;
     }
