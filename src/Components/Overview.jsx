@@ -2,12 +2,11 @@ import React, {useState} from 'react'
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import StatCard from './StatCard';
 import {Cpu,Activity, HardDrive, Wifi} from 'lucide-react';
+import io from 'socket.io-client';
 
 
-const Overview = () => {
+const Overview = ({systemData, chartData}) => {
 
-    const [systemData, setSystemData] = useState(null);
-    const [chartData, setChartData] = useState([]);
 
     return (
 

@@ -1,13 +1,73 @@
 import React from "react";
-import { Zap } from "lucide-react";
+import { Zap, AlertCircle, X  } from "lucide-react";
 
-const Processes = ({ processes, onOptimize }) => {
+const Processes = ({ processes, onOptimize, optimizing, handleOptimize, optimizationResult = true }) => {
+
+
   return (
     <div className="space-y-6">
       {/* Header */}
-      <h2 className="text-2xl font-bold" style={{ color: "#7162bb" }}>
-        Running Processes
-      </h2>
+
+      <div className="flex justify-between">
+        <h2 className="text-2xl font-bold" style={{ color: "#7162bb" }}> Running Processes</h2>
+          <button
+            onClick={handleOptimize}
+            disabled={optimizing}
+            className="px-4 py-2 text-white rounded-lg font-semibold text-md transition-all hover:shadow-lg disabled:opacity-70 cursor-pointer"
+            style={{ backgroundColor: "#7162bb" }}
+          >
+          {optimizing ? (
+            <span className="flex items-center justify-center">
+              <RefreshCw className="animate-spin mr-2" size={24} />
+              Optimizing...
+            </span>
+          ) : (
+            <span className="flex items-center justify-center">
+              <Zap className="mr-2" size={20} />
+              Scan & Optimize Now
+            </span>
+          )}
+        </button>
+
+        {optimizationResult && (
+          <div
+            className="fixed bottom-10 right-3 z-100 bg-white mt-8 p-5 rounded-lg border border-gray-300"
+          >
+            <h3
+              className="flex justify-between items-center gap-4 text-lg font-bold mb-4"
+              style={{ color: "#7162bb" }}
+            >
+              Optimization Complete!
+              <X size={20} className="mr-2 cursor-pointer" />
+            </h3>
+
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <p className="text-gray-600 text-sm">RAM Freed</p>
+                <p className="text-2xl font-bold" style={{ color: "#7162bb" }}>
+                  {optimizationResult.ramFreed}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-gray-600 text-sm">Processes Optimized</p>
+                <p className="text-2xl font-bold" style={{ color: "#00D4FF" }}>
+                  {optimizationResult.processesOptimized}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-gray-600 text-sm">CPU Improvement</p>
+                <p className="text-2xl font-bold" style={{ color: "#FF6B6B" }}>
+                  {optimizationResult.cpuImprovement}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        )}
+
+      </div>
 
       {/* Table Card with Bottom-Right Button */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden relative">
@@ -45,17 +105,6 @@ const Processes = ({ processes, onOptimize }) => {
               )}
             </tbody>
           </table>
-        </div>
-
-        {/* Optimize Button - Bottom Right Corner */}
-        <div className="absolute bottom-4 right-6">
-          <button
-            onClick={onOptimize}
-            className="flex items-center gap-2 bg-gradient-to-r from-[#7162bb] to-[#5a4a9e] hover:from-[#5a4a9e] hover:to-[#483d8b] text-white font-semibold py-3 px-7 rounded-xl shadow-xl transform transition-all duration-200 hover:scale-105 active:scale-100"
-          >
-            <Zap className="w-5 h-5" />
-            Optimize
-          </button>
         </div>
       </div>
     </div>

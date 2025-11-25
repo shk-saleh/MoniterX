@@ -15,9 +15,9 @@ const Sidebar = ({activeTab, setactiveTab}) => {
   ];
 
   return (
-    <div className={`sticky top-0 flex flex-col gap-10 items-center h-screen  transition-all duration-300 border-r border-gray-200 ${ sidebar? 'w-84 py-6 px-4' : 'w-16 py-6 px-3' }`}>
-      <div className={`w-full flex ${ sidebar? 'justify-between' : 'justify-center' }  items-center`}>
-        {sidebar ? <h1 className='text-xl font-normal'>MoniterX</h1> : ''}
+    <div className={`sticky top-0 flex flex-col gap-10 items-center h-screen transition-all duration-300 border-r border-gray-200 ${ sidebar? 'w-84 py-4 px-4' : 'w-16 py-4 px-3' }`}>
+      <div className={`w-full flex ${ sidebar? 'justify-between' : 'justify-center' }  items-center  border-b border-gray-200 pb-4`}>
+        {sidebar ? <h1 className='text-xl font-medium'>Moniter<span className='text-(--primary-color) font-bold'>X</span></h1> : ''}
         {sidebar ? <PanelRightOpen onClick={()=> setSidebar(false)} className='w-6 h-6 text-gray-600 cursor-e-resize transform-all duration-200' /> : <PanelLeftOpen onClick={()=> setSidebar(true)} className='w-6 h-6 text-gray-600 cursor-e-resize transform-all duration-200' /> } 
       </div>
       <div className='w-full flex flex-col items-start gap-2'>

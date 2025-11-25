@@ -3,18 +3,20 @@ import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, L
 import { Cpu, Activity, TrendingUp, Zap, RefreshCw } from 'lucide-react';
 
 const CPUMonitor = () => {
+
   const [cpuData, setCpuData] = useState(null);
   const [chartData, setChartData] = useState([]);
   const [coreData, setCoreData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const chartDataRef = useRef([]);
+  const chartDataRef = useRef([]);  
 
   useEffect(() => {
     const fetchCPUData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/system/cpu');
+        const response = await fetch('http://localhost:3000/api/system/stats');
         const data = await response.json();
         setCpuData(data);
+        console.log(cpuData);
         setLoading(false);
 
         // Update chart data
@@ -78,6 +80,8 @@ const CPUMonitor = () => {
     return () => clearInterval(interval);
   }, []);
 
+
+
   const StatCard = ({ icon: Icon, label, value, unit, color, subLabel }) => (
     <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all">
       <div className="flex items-center justify-between mb-3">
@@ -121,7 +125,7 @@ const CPUMonitor = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex items-center justify-center" style={{ backgroundColor: '#f0f3fd' }}>
+      <div className="w-full h-screen flex items-center justify-center" >
         <div className="text-center">
           <RefreshCw className="animate-spin mx-auto mb-4" size={48} style={{ color: '#7162bb' }} />
           <p className="text-xl font-semibold" style={{ color: '#7162bb' }}>Loading CPU Monitor...</p>
@@ -131,15 +135,7 @@ const CPUMonitor = () => {
   }
 
   return (
-    <div className="min-h-screen p-6" style={{ backgroundColor: '#f0f3fd' }}>
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold flex items-center gap-3" style={{ color: '#7162bb' }}>
-          <Cpu size={36} />
-          CPU Monitoring Dashboard
-        </h1>
-        <p className="text-gray-600 mt-2">Real-time processor performance metrics</p>
-      </div>
+    <div className="min-h-screen">
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">

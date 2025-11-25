@@ -12,12 +12,10 @@ import {
 const Disk = ({ systemData, chartData }) => {
   const disk = systemData?.disk || {};
 
+
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen space-y-6">
       <div className="bg-white rounded-lg p-6 shadow-md">
-        <h2 className="text-2xl font-bold mb-6" style={{ color: "#7162bb" }}>
-          Disk Monitoring
-        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Disk Chart */}
@@ -44,7 +42,7 @@ const Disk = ({ systemData, chartData }) => {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-600 mb-2">
-                  Total Space: {disk.total}
+                  Total Space: {(disk.mounted / (1024 * 1024 * 1024)).toFixed(2)}
                 </p>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div
@@ -55,13 +53,13 @@ const Disk = ({ systemData, chartData }) => {
                     }}
                   />
                 </div>
-                <p className="text-sm mt-2 font-semibold">{disk.used} Used</p>
+                {/* <p className="text-sm mt-2 font-semibold">{(disk.mounted / (1024 * 1024 * 1024)).toFixed(2)} Used</p> */}
               </div>
 
               <div className="border-t pt-4 space-y-2">
                 <p className="flex justify-between text-sm">
                   <span>Free</span>
-                  <span className="font-medium">{disk.free}</span>
+                  <span className="font-medium">{(disk.free / (1024 * 1024 * 1024)).toFixed(2)} GB</span>
                 </p>
                 <p className="flex justify-between text-sm">
                   <span>Read Speed</span>
