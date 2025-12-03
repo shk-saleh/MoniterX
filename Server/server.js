@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 httpServer.listen(PORT, () => {
   console.log(`MonitorX Backend running on http://localhost:${PORT}`);
   startMonitoring();

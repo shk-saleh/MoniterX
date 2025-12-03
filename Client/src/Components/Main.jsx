@@ -24,7 +24,7 @@ const Main = ({activeTab}) => {
 
   useEffect(() => {
     // Create socket connection
-    socketRef.current = io('http://localhost:3000', {
+    socketRef.current = io('http://localhost:8000', {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
@@ -76,7 +76,7 @@ const Main = ({activeTab}) => {
   useEffect(() => {
     const fetchProcesses = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/system/processes');
+        const response = await fetch('http://localhost:8000/api/system/processes');
         const data = await response.json();
         setProcesses(data);
         console.log(processes)
@@ -97,7 +97,7 @@ const Main = ({activeTab}) => {
     setOptimizing(true);
     try {
       // Call API endpoint
-      const response = await fetch('http://localhost:3000/api/system/optimize', {
+      const response = await fetch('http://localhost:8000/api/system/optimize', {
         method: 'POST',
       });
       
